@@ -1,29 +1,24 @@
 library(shiny)
-library(shinydashboard)
-library (DT)
-library(plotly)
-library(reshape2)
-library(data.table)
-library(dplyr)
-library(ggplot2)
-library(tibble)
-library(lubridate)
-library(scales)
-library(pivottabler)
-library(htmlwidgets)
-library(gridExtra)
-library(forecast)
-library(xts)
-library(dygraphs)
-library(datasets)
+library(shinythemes)
 library(tidyverse)
-library(googlesheets)
-
-loadData <- function() {
-  sheet <- gs_title("NC")
-  data<-gs_read_csv(sheet)
-  #data$dt<-as.Date(data$dt, origin=as.Date("1970-01-01"))
-}
+library(lubridate)
+library (DT)
+library(googledrive)
+library(googlesheets4)
 
 
+###IL CODICE SEGUENTE SI FA SOLO LA PRIMA VOLTA CHE SI ACCEDE AL DRIVE DI GOOGLE
+# options(gargle_oauth_cache = ".secrets")
+# gargle::gargle_oauth_cache()
+# drive_auth()
+# list.files(".secrets/")
 
+options(
+  gargle_oauth_cache = ".secrets",
+  gargle_oauth_email = TRUE
+)
+drive_auth()
+sheets_auth(token = drive_token())
+mydrive<-drive_find(type = "spreadsheet") 
+id<-mydrive[1,2]
+dati<-read_sheet(id$id)
