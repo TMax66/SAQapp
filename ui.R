@@ -1,5 +1,19 @@
 ui<-navbarPage("IZSLER- Sez. di Bergamo - SAQ",
            theme = shinytheme("cerulean"),
+           
+           tabPanel("Organizzazione",
+                    fluidRow(   
+                    column(6,
+                           img(src='org.png', align = "left")
+                       ),
+                    column(6,
+                           tableOutput("anag")
+                           )
+                    )
+             
+           ),
+           
+           
            tabPanel("Documentazione locale",
                     column(12,
                     fluidRow(
@@ -52,9 +66,29 @@ ui<-navbarPage("IZSLER- Sez. di Bergamo - SAQ",
                       a(actionButton("pg85", "PG00/085",
                                      class = "btn-primary",
                                      icon("chart-bar")),
-                        href="https://izslerapp.shinyapps.io/PG85E/")
+                        href="https://izslerapp.shinyapps.io/PG85E/"), 
+                     
+                       actionButton("map", "Matrice Prove/Addetti",
+                                     class = "btn-primary",
+                                     icon("chart-bar"),
+                      )
+                        
    
                     )
+                    ),
+                    br(),
+                    fluidRow(
+                      
+                      sidebarPanel(
+                        selectInput("op", "Operatore", 
+                                    c( unique(as.character(MPA$Operatore)))), 
+                        selectInput("ql", "Qualificazione", 
+                                    c(unique(as.character(MPA$Qualificazione))))
+                      ),
+                       column(8, 
+                      dataTableOutput("mpa")
+                    )
+                    
                     )
                     ),
            tabPanel("Archivio NC",
