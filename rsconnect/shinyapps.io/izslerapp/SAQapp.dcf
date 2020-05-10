@@ -5,9 +5,9 @@ account: izslerapp
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2190168
-bundleId: 3068374
+bundleId: 3100035
 url: https://izslerapp.shinyapps.io/SAQapp/
-when: 1587932053.37482
+when: 1588577602.122
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .gitattributes|.httr-oauth
+ignoredFiles: .gitattributes|.httr-oauth|DISTRIBUZIONE DOC SQ IZSLER.xlsx|MMPP27042020.xlsx|PG27042020.xlsx

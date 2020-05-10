@@ -48,12 +48,72 @@ ui<-navbarPage("IZSLER- Sez. di Bergamo - SAQ",
                 a(actionButton("daut", "Documenti autoportanti",
                                class = "btn-primary",
                                icon("tasks")),
-                  href="https://izsler-my.sharepoint.com/:f:/g/personal/vito_tranquillo_izsler_it/Eu70iDSPr_dHrkJc6oTizSYBKtjm9-GBbxWYPw0I30Nkag?e=0V2o3C")
+                  href="https://izsler-my.sharepoint.com/:f:/g/personal/vito_tranquillo_izsler_it/Eu70iDSPr_dHrkJc6oTizSYBKtjm9-GBbxWYPw0I30Nkag?e=0V2o3C"),
                 
-                       )
+                a(actionButton("riu", "Riunioni",
+                               class = "btn-primary",
+                               icon("tasks")),
+                  href="https://izsler-my.sharepoint.com/:f:/g/personal/vito_tranquillo_izsler_it/ElTBF1DHYnxFvkpnQufWqzIB0HGnPw4QC3cam29RVk8ygA?e=v1k4qF"),
+                       
+  
+                a(actionButton("lista", "Liste di distribuzione",
+                               class = "btn-primary",
+                               icon("tasks")),
+                  href="https://izsler-my.sharepoint.com/:f:/g/personal/vito_tranquillo_izsler_it/Eg4OLcsd18xEiIkOpXe412MBxJSe92fi6fRbG6ZImyCbCA?e=7LIsso"),
                 
+                a(actionButton("est", "Elenco locale documenti di origine esterna",
+                               class = "btn-primary",
+                               icon("tasks")),
+                  href="https://izsler-my.sharepoint.com/:w:/g/personal/vito_tranquillo_izsler_it/EW4LBokUzA1LsHHY9VSgQ-8BXzd1ctkjdEAccBvTMNFvkQ?e=MF25kk")
+                
+                       )),
+                hr(),
+                br(),
+
+                column(12, 
+                    fluidRow(   
+                h4("Audit"),  
+                a(actionButton("via", "Sorveglianza Accredia",
+                               class = "btn-primary",
+                               icon("tasks")),
+                  href="https://izsler-my.sharepoint.com/:f:/g/personal/vito_tranquillo_izsler_it/Esl1eyDxR-RMsGJcnehdSDkBOzx06wZzWReuRaYcAwBuTA?e=8pn8ek"), 
+                
+                
+                a(actionButton("vii", "Visite Ispettive Interne",
+                               class = "btn-primary",
+                               icon("tasks")),
+                  href="https://izsler-my.sharepoint.com/:f:/g/personal/vito_tranquillo_izsler_it/Ek9-b7WV6lRKtudssVOCfHkB5iDHKUmfPnlF6JLOgbkdAg?e=BZjMgB"), 
+                
+                
+                         )
+                  
                 )
-                    ),
+                ),
+           
+           tabPanel("Documentazione generale", 
+                    fluidRow(
+                      column(12,
+                             
+                             a(actionButton("mq", "Manuale della qualità",
+                                            class = "btn-primary",
+                                            icon("chart-bar")),
+                               href=""),
+                             
+                             
+                             a(actionButton("ppgg", "Procedure Generali",
+                                            class = "btn-primary",
+                                            icon("chart-bar")),
+                               href=""),
+                             
+                             a(actionButton("mmpp", "Metodi di Prova",
+                                            class = "btn-primary",
+                                            icon("chart-bar")),
+                               href="")
+
+                             )
+                    )
+             
+           ),
            
            tabPanel("Tools",
                     fluidRow(
@@ -72,14 +132,16 @@ ui<-navbarPage("IZSLER- Sez. di Bergamo - SAQ",
                                      class = "btn-primary",
                                      icon("chart-bar"),
                       )
-                        
    
                     )
                     ),
                     br(),
                     fluidRow(
-                      
-                      sidebarPanel(
+                         
+                      conditionalPanel( 
+                        
+                        condition = "input.map==1", 
+                        sidebarPanel(
                         selectInput("op", "Operatore", 
                                     c( unique(as.character(MPA$Operatore)))), 
                         selectInput("ql", "Qualificazione", 
@@ -88,7 +150,7 @@ ui<-navbarPage("IZSLER- Sez. di Bergamo - SAQ",
                        column(8, 
                       dataTableOutput("mpa")
                     )
-                    
+                    )
                     )
                     ),
            tabPanel("Archivio NC",
